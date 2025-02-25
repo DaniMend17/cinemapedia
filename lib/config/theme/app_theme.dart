@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 List<Color> colors = [
-  Colors.blue,
+  Colors.lightBlueAccent,
   Colors.red,
   Colors.teal,
   Colors.pink,
