@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "C:\\Users\\gollu\\dev\\flutter\\packages\\flutter_tools\\gradle\\src\\main\\groovy\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\gollu\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "C:\\Users\\gollu\\Music\\Flutter\\cinemapedia\\android\\app\\.cxx\\RelWithDebInfo\\202j2r32\\x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\gollu\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "C:\\Users\\gollu\\Music\\Flutter\\cinemapedia\\android\\app\\.cxx\\RelWithDebInfo\\202j2r32\\x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

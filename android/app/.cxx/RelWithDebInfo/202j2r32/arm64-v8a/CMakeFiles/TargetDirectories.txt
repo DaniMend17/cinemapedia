@@ -1,0 +1,2 @@
+C:/Users/gollu/Music/Flutter/cinemapedia/android/app/.cxx/RelWithDebInfo/202j2r32/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/gollu/Music/Flutter/cinemapedia/android/app/.cxx/RelWithDebInfo/202j2r32/arm64-v8a/CMakeFiles/rebuild_cache.dir

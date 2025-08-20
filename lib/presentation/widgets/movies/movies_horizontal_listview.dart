@@ -1,9 +1,10 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/config/helpers/human_formats.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class MoviesHorizontalListview extends StatefulWidget {
-  
   final List<Movie> movies;
   final String? title;
   final String? subtitle;
@@ -11,26 +12,27 @@ class MoviesHorizontalListview extends StatefulWidget {
 
   const MoviesHorizontalListview({
     required this.movies,
-    super.key, 
-    this.title, 
-    this.subtitle, 
+    super.key,
+    this.title,
+    this.subtitle,
     this.loadNextPage,
   });
 
   @override
-  State<MoviesHorizontalListview> createState() => _MoviesHorizontalListviewState();
+  State<MoviesHorizontalListview> createState() =>
+      _MoviesHorizontalListviewState();
 }
 
 class _MoviesHorizontalListviewState extends State<MoviesHorizontalListview> {
-
   final scrollController = ScrollController();
 
   @override
   void initState() {
     super.initState();
     scrollController.addListener(() {
-      if(widget.loadNextPage == null) return;
-      if ((scrollController.position.pixels + 200) >= scrollController.position.maxScrollExtent) {
+      if (widget.loadNextPage == null) return;
+      if ((scrollController.position.pixels + 200) >=
+          scrollController.position.maxScrollExtent) {
         widget.loadNextPage!();
       }
     });
@@ -48,7 +50,8 @@ class _MoviesHorizontalListviewState extends State<MoviesHorizontalListview> {
       height: 400,
       child: Column(
         children: [
-          if(widget.title != null || widget.subtitle != null) _OnCinemaTitle(widget.title, widget.subtitle),
+          if (widget.title != null || widget.subtitle != null)
+            _OnCinemaTitle(widget.title, widget.subtitle),
           Expanded(
             child: ListView.builder(
               controller: scrollController,
@@ -59,7 +62,6 @@ class _MoviesHorizontalListviewState extends State<MoviesHorizontalListview> {
               },
             ),
           )
-
         ],
       ),
     );
@@ -85,12 +87,17 @@ class _MovieInfo extends StatelessWidget {
               movie.posterPath,
               fit: BoxFit.cover,
               loadingBuilder: (context, child, loadingProgress) {
-                if(loadingProgress != null) const CircularProgressIndicator();
-                return child;
+                if (loadingProgress != null) const CircularProgressIndicator();
+                return GestureDetector(
+                    onTap: () {
+                      context.push('/movie/${movie.id}');
+                    }, child: FadeIn(child: child));
               },
             ),
           ),
-          const SizedBox(height: 5,),
+          const SizedBox(
+            height: 5,
+          ),
           //*Title
           Text(
             movie.title,
@@ -105,13 +112,18 @@ class _MovieInfo extends StatelessWidget {
                 Icons.star_half_outlined,
                 color: Colors.yellow.shade800,
               ),
-              const SizedBox(width: 3,),
+              const SizedBox(
+                width: 3,
+              ),
               Text(
                 '${movie.voteAverage}',
                 //Obtener el estilo general de la app y también modificar el color de el texto.
-                style: titleStyle.bodyMedium?.copyWith(color: Colors.yellow.shade800),
+                style: titleStyle.bodyMedium
+                    ?.copyWith(color: Colors.yellow.shade800),
               ),
-              const SizedBox(width: 10,),
+              const SizedBox(
+                width: 10,
+              ),
               Text(
                 // '${ movie.popularity }',
                 HumanFormats.number(movie.popularity),
@@ -138,17 +150,10 @@ class _OnCinemaTitle extends StatelessWidget {
       padding: const EdgeInsets.only(left: 15, right: 15, top: 10, bottom: 10),
       child: Row(
         children: [
-          if(title != null) 
-            Text(
-              title!,
-              style: titleStyle
-            ),
-            const Spacer(),
-            if(subtitle != null)
-              FilledButton.tonal(
-                onPressed: (){}, 
-                child: Text(subtitle!)
-              )
+          if (title != null) Text(title!, style: titleStyle),
+          const Spacer(),
+          if (subtitle != null)
+            FilledButton.tonal(onPressed: () {}, child: Text(subtitle!))
         ],
       ),
     );
